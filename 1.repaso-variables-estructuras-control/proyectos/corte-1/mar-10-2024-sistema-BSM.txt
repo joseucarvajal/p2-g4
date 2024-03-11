@@ -27,7 +27,7 @@ El sistema solamente va a soportar las siguientes ciudades:
 - Medellin
 - Cali
 - Manizales
-- Barramquilla
+- Barranquilla
 - Bogota
 
 La empresa lo ha contratado a usted para conocer lo siguiente:
