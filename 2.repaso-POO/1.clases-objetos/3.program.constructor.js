@@ -103,7 +103,7 @@ console.info({bus3});
 console.info(`Ahora se cambia el modelo del bus3`);
 
 //PROBLEMA: Es que se pueden cambiar los atributos a la loca
-//SOLUCION: encapsulamiento: proteger los atributos con metodos: 
+//SOLUCION: encapsulamiento: proteger los atributos con metodos GET y SET: 
 //GET: getter, SET: setter
 bus3.modelo = -2012;
 
