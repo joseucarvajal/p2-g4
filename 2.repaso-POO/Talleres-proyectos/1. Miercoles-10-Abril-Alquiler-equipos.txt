@@ -1,0 +1,17 @@
+Parametros de entrega:
+1. Individual
+2. Lenguaje de programacion: JavaScript
+3. Fecha maxima de entrega: Miercoles 10 de abril del 2024
+4. Por cada dia de retraso en la entrega: se tendra una penalidad de -1.5 unidades
+5. Porcentajes de calificacion: 35% trabajo, 65% sustentacion.
+6. El proyecto debe estar en un repositorio en GitHub a nombre del estudiante
+7. Utilizar POO: Clases, atributos, objetos, metodos, metodo constructor, encapsulamiento
+
+Enunciado:
+
+Modelar un almacen que vende y alquila equipos a personas naturales y juridicas. El almacen que alquila los equipos, requiere
+un sistema que le permita:
+
+- Vender equipos
+- Alquilar equipos
+- Saber cuanto dinero ingresa por concepto de venta y alquiler de equipos
