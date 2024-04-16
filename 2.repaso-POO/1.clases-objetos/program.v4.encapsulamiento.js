@@ -1,3 +1,26 @@
+const readlineSync = require('readline-sync');
+
+class Seguro 
+{
+    
+    deducible = 0;
+    valorAsegurado = 0;
+    costo = 0;
+    nombre = '';//bronce, plata, oro, diamante
+
+    constructor(deducible, valorAsegurado, nombre, costo){
+        this.deducible = deducible;
+        this.valorAsegurado = valorAsegurado;
+        this.nombre = nombre;
+        this.costo =costo;
+    }
+}
+
+const seguro1 = new Seguro(400, 1000000, 'bronce', 500);
+const seguro2 = new Seguro(300, 2000000, 'plata', 3000);
+const seguro3 = new Seguro(200, 30000000, 'dorado', 7000);
+const seguro4 = new Seguro(0, 70000000, 'diamante', 10000);
+
 /**
 Bus desde un sistema de una aseguradora. 
 1. Abstraccion: Sacar los atributos mas relevantes de una clase de acuerdo al sistema
@@ -18,7 +41,9 @@ class Bus {
     avaluo = 0; //costo en dinero del bus
     marca = ''; //mercedes, BMW, Iveco
     asegurado = false; // false = no asegurado, true = si asegurado
+    tipoDeSeguro = null; //Este atributo guarda el objeto de tipo Seguro seleccionado
     motivoRechazoSeguro = '';
+    #modelo = 0;
 
     //El metodo constructor protege el programa para que no se creen
     //objetos sin los datos requeridos
@@ -36,23 +61,24 @@ class Bus {
             throw new Error(`El bus requiere una marca`);
         }
 
-        this._modelo = modelo;
+        this.#modelo = modelo;
         this.avaluo = avaluo;
         this.marca = marca;
     }
 
     //Encapsulamiento: proteccion del atributo: metodo getter
     get modelo() {
-        return this._modelo;
+        return this.#modelo;
     }
-    
+
     //Encapsulamiento: proteccion del atributo: metodo setter
     set modelo(nuevoValorDelModelo){
         if(nuevoValorDelModelo < 0){
             throw new Error(`el modelo no puede ser un valor negativo`);
         }
-        this._modelo = nuevoValorDelModelo;
+        this.#modelo = nuevoValorDelModelo;
     }
+    
     
     //Metodos - inteligencia
     compararModelo(otroBus){
@@ -64,7 +90,7 @@ class Bus {
         }
     }
 
-    asegurar(){
+    asegurar(dineroDisponible){
 
         //Buena practica de programacion: Primero se verifican los errores
         //Si hay algun error, se hace lo que se tenga que hacer y se retorna
@@ -78,6 +104,33 @@ class Bus {
             return;
         }
 
+        const seguroElegido = readlineSync.question('Que seguro quiere Diamante(d), Dorado(o), Plata(p), Bronce(b): ');
+        if(seguroElegido == 'd'){
+            if(dineroDisponible < seguro4.costo){
+                throw new Error(`El dinero disponible no alcanza para el seguro ${seguro4.nombre}`);
+            }
+
+            this.tipoDeSeguro = seguro4;
+        }
+        else if(seguroElegido == 'o'){
+            if(dineroDisponible < seguro3.costo){
+                throw new Error(`El dinero disponible no alcanza para el seguro ${seguro3.nombre}`);
+            }
+            this.tipoDeSeguro = seguro3;
+        }
+        else if(seguroElegido == 'p'){
+            if(dineroDisponible < seguro2.costo){
+                throw new Error(`El dinero disponible no alcanza para el seguro ${seguro2.nombre}`);
+            }
+            this.tipoDeSeguro = seguro2;
+        }
+        else {
+            if(dineroDisponible < seguro1.costo){
+                throw new Error(`El dinero disponible no alcanza para el seguro ${seguro1.nombre}`);
+            }
+            this.tipoDeSeguro = seguro1;
+        }
+
         console.info(`El bus ${this.marca} se ha asegurado con exito`);
         //No hubo ningun error
         this.asegurado = true;
@@ -86,7 +139,12 @@ class Bus {
 
 
 
-let bus1 = new Bus(2011, 1000, `Mercedes`);
+let bus1 = new Bus(
+    2011, 
+    1000, 
+    `Mercedes`
+);
+
 let bus2 = new Bus(1995, 300, `Iveco`);
 let bus3 = new Bus(2011, 50000, `BMW`);
 
@@ -114,7 +172,8 @@ console.info({bus1});
 console.info({bus3});
 console.info(`Ahora se cambia el modelo del bus3`);
 
-bus3.modelo = -2012;
+bus3.modelo = 2012;
+console.info(`ESTE ES EL MODELO DEL BUS 3: ${bus3.modelo}`);
 
 console.info({bus3});
 console.info({bus1});
@@ -127,7 +186,5 @@ console.info({bus1});
 console.info(`Averiguar si un bus es mas viejo que otro CON METODOS`);
 bus1.compararModelo(bus2);
 
-bus1.asegurar();
-bus2.asegurar();
-bus3.asegurar();
+bus1.asegurar(3000);
 
