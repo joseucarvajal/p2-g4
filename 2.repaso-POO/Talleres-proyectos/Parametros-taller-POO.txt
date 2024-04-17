@@ -1,0 +1,25 @@
+Parametros de entrega:
+1. Individual
+2. Utilizar el lenguaje javascript como en clase
+3. Fecha de asesoria obligatoria: 
+4. Fecha de sustentacion: 
+5. Porcentajes de calificacion: Trabajo: 35%, sustentacion: 65%
+6. Subir el proyecto a un repositorio GitHub llamado: proyecto_archivador_POO
+7. El proyecto tiene que esta en GitHub: 
+8. Cada dia de retraso en la entrega del proyecto es -1.5 en la nota definitiva
+9. La sustentacion se debe realizar sobre el mismo proyecto
+10. El Polimorfismo no se puede basar en descuentos como lo hizo el profesor en clase, debe ser diferente
+11. El proyecto debe incluir todos los conceptos de POO, es decir:
+    - Clases
+    - Objetos
+    - Atributos
+    - Metodos
+    - Metodo constructor
+    - Encapsulamiento
+    - Herencia
+    - Polimorfismo
+    - Listas (arreglos)
+
+Ayudas:
+    Curso orientado a objetos de JavaScript en Youtube: https://www.youtube.com/watch?v=N_t1A39IB_8
+

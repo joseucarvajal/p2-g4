@@ -52,7 +52,8 @@ class Bus {
     //una nueva categoria, me tocaria modificar todos los if-else de las categoria
     //con lo cual podria introducir errores en el programa
     //SOLUCION:herencia, polimorfismo
-    categoria = ''; //lujo, escolar, paseos, funebre
+    //Se quita el atributo categoria y se pone en una sub-clase por que no todos los buses tienen categoria
+    //categoria = ''; //lujo, escolar, paseos, funebre
 
     //El metodo constructor protege el programa para que no se creen
     //objetos sin los datos requeridos
@@ -107,12 +108,12 @@ class Bus {
             this.motivoRechazoSeguro = `el bus es muy viejo`;
             return;
         }
-
-        if(this.avaluo > 10000){
+        
+        if(this.avaluo > 10000000){
             this.motivoRechazoSeguro = `el bus es es demasiado costoso`;
-            return;
+            throw new Error(`El bus es demasiado costoso`);
         }
-
+        
         const seguroElegido = readlineSync.question('Que seguro quiere Diamante(d), Dorado(o), Plata(p), Bronce(b): ');
         if(seguroElegido == 'd'){
             if(dineroDisponible < seguro4.costo){
@@ -145,8 +146,6 @@ class Bus {
         this.asegurado = true;
     }
 }
-
-
 
 let bus1 = new Bus(
     2011, 
@@ -195,5 +194,25 @@ console.info({bus1});
 console.info(`Averiguar si un bus es mas viejo que otro CON METODOS`);
 bus1.compararModelo(bus2);
 
-bus1.asegurar(3000);
+//bus1.asegurar(3000);
 
+//HERENCIA
+class BusEspecial extends Bus {
+    categoria = ''; //lujo, escolar, paseos, funebre
+
+    constructor(modelo, avaluo, marca, categoria){
+        super(modelo, avaluo, marca);
+        if(!categoria){
+            throw new Error(`El bus especial debe tener categoria`);
+        }
+        this.categoria = categoria;
+    }
+}
+
+//PROBLEMA:
+//Aplicar descuento segun la categoria del bus
+//me voy a llenar de muchos if's
+//para no llenarme de if's utilizo POLIMORFISMO
+
+const busEspecial1 = new BusEspecial(2020, 2000000, 'BMW', 'lujo');
+busEspecial1.asegurar(5000);

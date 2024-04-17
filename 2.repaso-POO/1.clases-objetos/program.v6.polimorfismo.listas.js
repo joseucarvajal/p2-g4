@@ -52,7 +52,8 @@ class Bus {
     //una nueva categoria, me tocaria modificar todos los if-else de las categoria
     //con lo cual podria introducir errores en el programa
     //SOLUCION:herencia, polimorfismo
-    categoria = ''; //lujo, escolar, paseos, funebre
+    //Se quita el atributo categoria y se pone en una sub-clase por que no todos los buses tienen categoria
+    //categoria = ''; //lujo, escolar, paseos, funebre
 
     //El metodo constructor protege el programa para que no se creen
     //objetos sin los datos requeridos
@@ -101,20 +102,23 @@ class Bus {
 
     asegurar(dineroDisponible){
 
+        console.info(`Quiere asegurar el bus de marca: ${this.marca} - disponible: ${dineroDisponible}`);
+
         //Buena practica de programacion: Primero se verifican los errores
         //Si hay algun error, se hace lo que se tenga que hacer y se retorna
         if(this.modelo < 1970){
             this.motivoRechazoSeguro = `el bus es muy viejo`;
             return;
         }
-
-        if(this.avaluo > 10000){
+        
+        if(this.avaluo > 10000000){
             this.motivoRechazoSeguro = `el bus es es demasiado costoso`;
-            return;
+            throw new Error(`El bus es demasiado costoso`);
         }
-
+        
         const seguroElegido = readlineSync.question('Que seguro quiere Diamante(d), Dorado(o), Plata(p), Bronce(b): ');
         if(seguroElegido == 'd'){
+            console.log({dineroDisponible});
             if(dineroDisponible < seguro4.costo){
                 throw new Error(`El dinero disponible no alcanza para el seguro ${seguro4.nombre}`);
             }
@@ -145,8 +149,6 @@ class Bus {
         this.asegurado = true;
     }
 }
-
-
 
 let bus1 = new Bus(
     2011, 
@@ -195,5 +197,87 @@ console.info({bus1});
 console.info(`Averiguar si un bus es mas viejo que otro CON METODOS`);
 bus1.compararModelo(bus2);
 
-bus1.asegurar(3000);
+//bus1.asegurar(3000);
 
+//HERENCIA
+class BusEspecial extends Bus {
+    categoria = ''; //lujo, escolar, paseos, funebre
+
+    constructor(modelo, avaluo, marca, categoria){
+        super(modelo, avaluo, marca);
+        if(!categoria){
+            throw new Error(`El bus especial debe tener categoria`);
+        }
+        this.categoria = categoria;
+    }
+
+    ajustarPrecioDeSeguro(){}
+}
+
+//PROBLEMA:
+//Aplicar descuento segun la categoria del bus
+//me voy a llenar de muchos if's
+//para no llenarme de if's utilizo POLIMORFISMO
+
+class BusDeLujo extends BusEspecial{
+    constructor(modelo, avaluo, marca){
+        super(modelo, avaluo, marca, 'lujo');
+    }
+
+    ajustarPrecioDeSeguro(){
+        const nuevoPrecioSeguro = this.tipoDeSeguro.costo + (this.tipoDeSeguro.costo * 10/100);
+        return nuevoPrecioSeguro;
+    }
+}
+
+class BusEscolar extends BusEspecial{
+    constructor(modelo, avaluo, marca){
+        super(modelo, avaluo, marca, 'escolar');
+    }
+
+    ajustarPrecioDeSeguro(){
+        const nuevoPrecioSeguro = this.tipoDeSeguro.costo - (this.tipoDeSeguro.costo * 10/100);
+        return nuevoPrecioSeguro;
+    }
+}
+
+class BusPaseos extends BusEspecial{
+
+    cantidadPaseosAlAnio = 0;
+
+    constructor(modelo, avaluo, marca, cantidadPaseosAlAnio){
+        super(modelo, avaluo, marca, 'paseos');
+        this.cantidadPaseosAlAnio = cantidadPaseosAlAnio;
+    }
+
+    ajustarPrecioDeSeguro(){
+        let nuevoPrecioSeguro = 0;
+        if(this.cantidadPaseosAlAnio <= 100){
+            nuevoPrecioSeguro = this.tipoDeSeguro.costo + (this.tipoDeSeguro.costo * 10/100);
+        }
+        else if(this.cantidadPaseosAlAnio >= 200) {
+            nuevoPrecioSeguro = this.tipoDeSeguro.costo + (this.tipoDeSeguro.costo * 20/100);
+        }
+
+        return nuevoPrecioSeguro;
+    }
+}
+
+
+const busDeLujo = new BusDeLujo(2020, 9000000, 'Mercedes');
+const busEscolar1 = new BusEscolar(2018, 3000000, 'Iveco');
+const busParaLosPaseos = new BusPaseos(2019, 5000000, 'BMW', 99);
+
+const listaBusesEspeciales = [];
+listaBusesEspeciales.push(busDeLujo);
+listaBusesEspeciales.push(busEscolar1);
+listaBusesEspeciales.push(busParaLosPaseos);
+
+for(let i=0; i<listaBusesEspeciales.length; i++){
+    listaBusesEspeciales[i].asegurar(30000);
+}
+
+for(let i=0; i<listaBusesEspeciales.length; i++){
+    const nuevoPrecioSeguro = listaBusesEspeciales[i].ajustarPrecioDeSeguro();
+    console.info(`el seguro ${listaBusesEspeciales[i].tipoDeSeguro.nombre} para el bus marca ${listaBusesEspeciales[i].marca} ahora cuesta ${nuevoPrecioSeguro}`);
+}
