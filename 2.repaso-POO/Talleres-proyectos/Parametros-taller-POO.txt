@@ -1,15 +1,16 @@
 Parametros de entrega:
 1. Individual
 2. Utilizar el lenguaje javascript como en clase
-3. Fecha de asesoria obligatoria: 
-4. Fecha de sustentacion: 
+3. Fecha de asesoria obligatoria: abril 29 de 2024
+4. Fecha de sustentacion grupo 1: 6 de mayo, Fecha de sustentacion grupo 2: 7 de mayo
 5. Porcentajes de calificacion: Trabajo: 35%, sustentacion: 65%
 6. Subir el proyecto a un repositorio GitHub llamado: proyecto_archivador_POO
 7. El proyecto tiene que esta en GitHub: 
 8. Cada dia de retraso en la entrega del proyecto es -1.5 en la nota definitiva
 9. La sustentacion se debe realizar sobre el mismo proyecto
 10. El Polimorfismo no se puede basar en descuentos como lo hizo el profesor en clase, debe ser diferente
-11. El proyecto debe incluir todos los conceptos de POO, es decir:
+11. El usuario puede agregar cuantos datos que quiera, debe existir un menu para que el usuario agregue datos
+12. El proyecto debe incluir todos los conceptos de POO, es decir:
     - Clases
     - Objetos
     - Atributos
@@ -20,6 +21,96 @@ Parametros de entrega:
     - Polimorfismo
     - Listas (arreglos)
 
+Grupo 1:
+    Juan Pablo Diosa Valencia
+    Nicolas Garcia Amezquita
+    Laura Bernal
+    Leidy Juliana Granada
+    Nicolas Tamayo
+
+Grupo 2:
+    Nicolas Cardona Duque
+    Sebastian Roa
+    Luna Murillo
+    Juan Sebastian Murcia
+    Ricardo Granados
+
 Ayudas:
     Curso orientado a objetos de JavaScript en Youtube: https://www.youtube.com/watch?v=N_t1A39IB_8
+
+
+Proyecto Grupo 1:
+Transporte de mercancia:
+Una compania tranportadora de mercancia tiene una flota de tractomulas. Esta compania realiza transporte de diferentes
+tipos de carga:
+    1. Carga tipo 1: Carga hasta 5 toneladas: Tiene un impuesto del 5%
+    2. Carga tipo 2: Carga desde 5 hasta 10 toneladas: Tiene un impuesto del 7%
+    3. Carga tipo 3: Carga desde 10 hasta 15 toneladas: Tiene un impuesto del 12%
+    4. Carga tipo 4: Carga superior a 15 toneladas: Tiene un impuesto del 20%
+
+La compania cobra un valor por cada carga dependiendo del material a transportarse asi:
+    1. Alimentos: $X/kg por cada 100 km
+    2. Hierro: $Y/kg por cada 100 km
+    3. Cemento: $Z/kg por cada 100 km
+    4. Electrodomesticos: $B/kg por cada 100 km
+    5. Otro: $W/kg por cada 100 km
+
+Al momento de realizar un viaje la empresa debe conocer los datos del vehiculo que va a realizar la carga, estos datos son:
+quien es el conductor, genero del conductor, ciudad origen, ciudad destino, consumo de gasolina por kilometro de camion.
+
+A algunos conductores de camion se les da una comision por viaje, cuando este viaje supera los 1000 km, la comision es de 
+5% por cada 1000 km, cuando el conductor tiene mas de 5 anios de antiguedad en la empresa, esta comision es del 7%
+
+La empresa necesita conocer:
+1. Dinero total recaudado por concepto de viajes realizados
+2. Cual es el tipo de carga que genera mas impuestos: (tipo 1, tipo 2, tipo 3... etc)
+3. Cual es el promedio de ganancia de dinero por los viajes hechos por cualquiera de los siguientes conceptos (alimentos,
+hierro, cemento, etc...)
+4. Cual es la marca de camion que menos gasolina consume
+5. Cuanto dinero se han dado en comisiones
+6. Dado el nombre de un conductor en particular, la empresa desea conocer:
+    1. Cuanto dinero ha ganado este conductor por transportes realizados
+    2. Cuanto dinero ha ganado por comisiones si aplica
+
+Proyecto Grupo 2:
+Administracion de una universidad:
+Una universidad lo ha contratado a usted para que desarrolle un software que le permita administrar sus profesores
+y las asignaturas que estos orientan.
+
+La universidad tiene diferentes programas, ej: ingenieria de sistemas, psicologia, medicina... etc. Cada uno de los programas
+tiene diferentes profesores para sus asignaturas, de esta manera, el programa de ingenieria de sistemas puede tener X
+numero de profesores para X numero de asignaturas.
+La universidad realiza los pagos a los profesores dependiendo de los siguientes criterios:
+
+1. Un profesor de planta: gana $X/hora
+2. Un profesor catedratico: gana $Y/hora
+3. Un profesor catedratico asociado gana 7% mas la hora que un profesor catedratico
+
+Las horas que trabaja un profesor estan dadas o se calculanb segun las asignaturas que el profesor dicta, de esta manera,
+si un profesor dicta 1 asignatura de 2 horas y otra asignatura de 5 horas, el profesor en total dicta 7 horas.
+
+La universidad debe pagar un recargo extra del cuando la asignatura se dicta requiere que el profesor tenga maestria, asi:
+
+1. Si el programa es diurno, el recargo es del M%
+2. Si el programa es nocturno, el recargo es del M+5%
+
+Es importante anotar que un mismo profesor, puede dictar clases en diferentes programas.
+
+La universidad desea conocer:
+
+1. El costo total de la nomina de toda la universidad, es decir, el pago de todos los profesores.
+2. El costo total de la nomina de un programa dado, ejemplo: Comunicacion y Periodismo
+3. El promedio de costo de los profesores que dan clases en el dia
+4. Dado un profesor, se desea conocer:
+    1. Cuanto dinero hay que pagarle en total
+    2. Cuanto dinero hay que pagarle por concepto de horas extras en diurnas y nocturnas
+5. Cuanto dinero hay que pagarle a los profesores de planta
+6. Cuanto dinero hay que pagarles a los profesores catedraticos
+7. La universidad desea conocer cuantos profesores tienen maestria
+
+
+
+
+
+
 
