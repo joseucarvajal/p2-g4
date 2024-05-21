@@ -1,0 +1,3 @@
+Fecha de entrega y sustentacion: jueves 23 de mayo, 7:30 pm
+implementar el proyecto del corte 2 con nodos y listas, igual a como
+se hizo en clase.
